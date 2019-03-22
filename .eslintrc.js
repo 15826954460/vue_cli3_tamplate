@@ -18,6 +18,7 @@ module.exports = {
     "no-trailing-spaces": "off",
     "eol-last": "off",
     "no-multi-spaces": 'off',
+    "key-spacing": "off",
     "no-extra-semi": "error" /** 忽略额外的分号 */
   },
   parserOptions: {
