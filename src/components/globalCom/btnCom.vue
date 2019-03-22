@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>66666666</div>
+  <div>Button components</div>
 </template>
 
 <script>
