@@ -11,28 +11,20 @@
 </template>
 
 <script>
-import { mapState, mapActions, createNamespacedHelpers } from "vuex";
-const {
-  mapState: mapStateHome,
-  mapActions: mapActionsHome
-} = createNamespacedHelpers("home");
+import mixins from '@/mixin/mixin.js'
 export default {
+  mixins: [mixins],
   data() {
     return {};
   },
-
   components: {},
 
   computed: {
-    ...mapState(["userInfo"]),
-    ...mapStateHome(["count"])
   },
 
   mounted() {},
 
   methods: {
-    ...mapActions(["ac_setUserInfo"]),
-    ...mapActionsHome(["at_add"]),
     changeModule() {
       this.at_add(Math.random() * 1000);
     },
