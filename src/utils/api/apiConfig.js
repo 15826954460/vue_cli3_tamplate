@@ -83,15 +83,18 @@ const webApiConfig = {
 /** 开始请求接口，判断是否展示loading动画 */
 function startLoading() {
   // let _loadInstance = null;
+  // // 600ms之后展示loading动画
   // let _startTimer = setTimeout(() => {
-  //   _loadInstance = bouncedUtils.loading.show;
+  //   _loadInstance = bouncedUtils.loading.show; // 封装的loading动画
   //   _loadInstance();
   //   _startTimer = null;
   // }, webApiConfig.startToLoading);
+
   // let _overTimer = setTimeout(() => {
-  //   bouncedUtils.toast.show({ content: "请求超时\n请检查网络" });
+  //   bouncedUtils.toast.show({ content: "请求超时\n请检查网络" }); // bouncedUtils
   //   _overTimer = null;
   // }, webApiConfig.loadingTimeout);
+
   // return [_startTimer, _overTimer, _loadInstance];
 }
 

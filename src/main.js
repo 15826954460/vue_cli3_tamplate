@@ -3,10 +3,10 @@ import App from "./App.vue";
 import router from "./router/index.js";
 import store from "./store/store.js";
 import i18n from "./i18nConfig/i18nConfig.js";
-import "@/components/globalCom" /** 辅助引用代码 */
+import "@/components/globalCom" /** 直接引用js */
 
 Vue.config.productionTip = false;
-window.Vue = Vue;
+// window.Vue = Vue;
 new Vue({
   router,
   store,
