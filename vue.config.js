@@ -16,7 +16,11 @@ module.exports = {
       "vue-i18n": "VueI18n"
       // 'element-ui': 'ELEMENT',
     });
-    // cdn 常用的第三方库不用打包，直接从线上拉去，减少包的体积
+    /**
+     * cdn 常用的第三方库不用打包，直接从线上拉去，减少包的体积
+     * 没有cdn的时候就直接在页面中采用 script 标签进行引入
+     * 参见 pubilc/index.heml
+     */
     const cdn = {
       css: [
         // element-ui css
