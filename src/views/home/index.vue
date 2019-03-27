@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <BtnCom/>
-    <p>{{$t("taskCenter")}}</p>
+    <p>{{$t("international")}}</p>
     <img alt="Vue logo" src="../../assets/logo.png">
     <p>我来自全局的状态管理： {{userInfo}}</p>
     <button @click="changeGlobal">修改全局状态信息</button>
@@ -22,7 +22,8 @@ export default {
   computed: {
   },
 
-  mounted() {},
+  mounted() {
+  },
 
   methods: {
     changeModule() {

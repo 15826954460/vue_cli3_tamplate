@@ -5,7 +5,7 @@ module.exports = {
    * 上线时需要把 baseUrl 设置为 CDN 地址 https://d3nwz1fzrto4dz.cloudfront.net/xxx
    */
   // 
-  baseUrl: "", // 本地调试，默认为空
+  publicPath: "", // 本地调试，默认为空
   chainWebpack: config => {
     // #region 忽略生产环境打包的文件
     config.externals({
