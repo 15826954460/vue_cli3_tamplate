@@ -1,7 +1,7 @@
 import axios from "axios";
 
 let customAxios = axios.create({
-  baseURL: "/api/",
+  baseURL: "/api/", // 根据实际情况自行配制
   timeout: 60000, // 默认请求超时时间
   // 设置请求头格式：用自定义的覆盖 axios 自带的 'Content-Type': 'application/x-www-form-urlencoded'
   headers: {
@@ -147,7 +147,7 @@ export function getFetch({
   if (cancelFetch(cancel, interfaceKey).cancel) return;
   /** 这里使用 promise 进行就建议包装是为了更友好的将数据的处理暴露在业务层 */
   return new Promise((resolve, reject) => {
-    // startLoading();
+    startLoading();
     webApiConfig
       .instance({
         method: "get",
@@ -162,7 +162,7 @@ export function getFetch({
           ""
       })
       .then(response => {
-        // endLoading();
+        endLoading();
         deleteInterceptors(interfaceKey); // 删除拦截器以及其实例
         let _code = response.code;
         /** 根据后台返回的状态码进行相应的处理 */
@@ -200,6 +200,7 @@ export function postFetch({
   /** 这里使用 promise 进行就建议包装是为了更友好的将数据的处理暴露在业务层 */
   return new Promise((resolve, reject) => {
     /** 配置请求是否加载动画 */
+    startLoading();
     webApiConfig
       .instance({
         method: "post",
@@ -214,7 +215,7 @@ export function postFetch({
           ""
       })
       .then(response => {
-        // endLoading();
+        endLoading();
         deleteInterceptors(interfaceKey); // 删除拦截器以及其实例
         let _code = response.code;
         /** 根据后台返回的状态码进行相应的处理 */

@@ -11,7 +11,9 @@
 </template>
 
 <script>
-import mixins from '@/mixin/mixin.js'
+import mixins from "@/mixin/mixin.js";
+import API from "@/axios/webAPI.js";
+
 export default {
   mixins: [mixins],
   data() {
@@ -19,10 +21,12 @@ export default {
   },
   components: {},
 
-  computed: {
-  },
+  computed: {},
 
   mounted() {
+    API.nodejs.topics().then(res => {
+      console.log(22222, res);
+    });
   },
 
   methods: {

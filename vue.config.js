@@ -62,14 +62,14 @@ module.exports = {
   },
   // 配置代理
   devServer: {
-    host: "10.229.27.128", // 自己电脑ip
+    host: "localhost", // 自己电脑ip
     port: 9999, // 自定义端口号
     https: false,
     proxy: {
       "/api/": {
         // 测试环境
         // 开发环境: 'https://micro.api.wps.com'
-        target: "https://micro.api.wps.com",
+        target: "https://cnodejs.org/",
         secure: false // 如果是https接口，需要配置这个参数
       }
     }
