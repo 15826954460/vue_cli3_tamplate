@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <BtnCom/>
+    <Toast/>
     <p>{{$t("international")}}</p>
     <img alt="Vue logo" src="../../assets/logo.png">
     <p>我来自全局的状态管理： {{userInfo}}</p>

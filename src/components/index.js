@@ -1,13 +1,24 @@
-// components/index.js
+/** 一下为动态注册全局组件的js代码 */
+import upperFirst from "lodash/upperFirst";
+import camelCase from "lodash/camelCase";
 import Vue from "vue";
 
-// 自动加载 global 目录下的 .js 结尾的文件 https://webpack.js.org/guides/dependency-management/#requirecontext
-const componentsContext = require.context("./global", true, /\.js$/);
-componentsContext.keys().forEach(component => {
-  const componentConfig = componentsContext(component);
-  /**
-   * 兼容 import export 和 require module.export 两种规范
-   */
-  const ctrl = componentConfig.default || componentConfig;
-  Vue.component(ctrl.name, ctrl);
+// https://webpack.js.org/guides/dependency-management/#require-context
+const requireComponent = require.context(
+  "./global", // Look for files in the current directory
+  true, // Do not look in subdirectories
+  /[A-Za-z]+\.vue$/ // Only include "_base-" prefixed .vue files
+);
+
+// For each matching file name...
+requireComponent.keys().forEach(fileName => {
+  // Get the component config
+  const componentConfig = requireComponent(fileName);
+  // Get the PascalCase version of the component name
+  const componentName = upperFirst(
+    // remove extension name
+    camelCase(fileName.replace(/\.\w+$/, ""))
+  );
+  // Globally register the component
+  Vue.component(componentName, componentConfig.default || componentConfig);
 });

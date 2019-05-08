@@ -1,3 +1,4 @@
 export default {
-  userInfo: 'init'
+  userInfo: 'init',
+  showToast: false,
 }
