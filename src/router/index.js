@@ -7,7 +7,7 @@ import Router from "vue-router";
 /** -------------以上为手动注册路由的代码------------- */
 Vue.use(Router);
 
-/** -------------以下为自动注册路由的代码------------- */ 
+/** -------------以下为自动注册路由的代码------------- */
 let routes = [];
 const routerContext = require.context('.', true, /index\.js/)
 routerContext.keys().forEach(routeName => {

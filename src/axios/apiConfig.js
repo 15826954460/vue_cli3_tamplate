@@ -1,23 +1,23 @@
 import axios from "axios";
+// import utils from '@/utils/utils';
 
 const TIME_OUT = 50000; // 请求超时时间
-const LOADING_START = 600; // loading开始时间
-const LOADING_END = 30000; // 动画结束时间
+// const LOADING_START = 600; // loading开始时间
+// const LOADING_END = 30000; // 动画结束时间
 
 let requestInstanceStack = new Map(); // 请球拦截栈
 let responseInstanceStack = new Map(); // 响应拦截栈
 let cancelFetch = new Map(); // 取消请求的拦截栈
 
+// let start_timer = null;
+// let over_timer = null;
 
 let customAxios = axios.create({
   /**
    * 开发环境：/android-task/ 本地代理到测试环境
    * 正式环境：https://micro.api.wps.com/android-task/
    */
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "/android-task/"
-      : "https://micro.api.wps.com/android-task/",
+  baseURL: '/server',
   timeout: TIME_OUT, // 默认请求超时时间
   // 设置请求头格式：用自定义的覆盖 axios 自带的 'Content-Type': 'application/x-www-form-urlencoded'
   headers: {
@@ -30,6 +30,9 @@ let customAxios = axios.create({
     username: "",
     password: ""
   },
+  // params: {
+  //   platform: 'PC2019'
+  // },
   responseType: "json" // 默认的相应数据格式
 });
 
@@ -76,24 +79,22 @@ function removeResponseInterceptors(interfaceKey) {
 }
 
 /** 开始请求接口 */
-function startLoading() {
-  let _loadInstance = null;
-  let _startTimer = setTimeout(() => {
-    // 弹出loading框，方法待写
-    _startTimer = null;
-  }, LOADING_START);
-  let _overTimer = setTimeout(() => {
-    // 超时后的弹框内容，待定
-    _overTimer = null;
-  }, LOADING_END);
-  return [_startTimer, _overTimer, _loadInstance];
-}
+// function startLoading() {
+//   start_timer = setTimeout(() => {
+//     // 弹出loading框
+//   }, LOADING_START);
+//   over_timer = setTimeout(() => {
+//     // 超时后的弹框内容，待定
+//   }, LOADING_END);
+// }
 
 /** 请求接口结束 */
-function endLoading() {
-  clearTimeout(startLoading()[0]);
-  clearTimeout(startLoading()[1]);
-}
+// function endLoading() {
+//   clearTimeout(start_timer);
+//   clearTimeout(over_timer);
+//   start_timer = null;
+//   over_timer = null;
+// }
 
 /** 启用拦截 */
 function startInterceptors(interfaceKey) {
@@ -118,6 +119,7 @@ export function getFetch({
   params = {},
   interfaceKey = "",
   cancel = false, // 判断是否中断请求的参数
+  // isLoading = true,
 } = {}) {
   if (cancel) {
     cancelFetch.get(interfaceKey)();
@@ -127,19 +129,19 @@ export function getFetch({
   startInterceptors(interfaceKey); // 请求拦截
   /** 这里使用 promise 进行就建议包装是为了更友好的将数据的处理暴露在业务层 */
   return new Promise((resolve, reject) => {
-    startLoading(); // 展示loading
+    // isLoading && startLoading(); // 展示loading
     customAxios({
       method: "get",
       url: url,
       params: params,
       cancelToken:
-        (!cancel && customAxios.CancelToken(function executor(c) {
+        (!cancel && axios.CancelToken(function executor(c) {
           // executor 函数接收一个 cancel 函数作为参数
           cancelFetch.set(interfaceKey, c)
         })) || ""
     })
       .then(response => {
-        endLoading(); // 隐藏loading
+        // endLoading(); // 隐藏loading
         deleteInterceptors(interfaceKey); // 删除拦截器以及其实例
         if (response.status === 200) {
           /** 这里也可以通过制定的成功的毁掉函数来返回数据 */
@@ -167,7 +169,8 @@ export function postFetch({
   url = "",
   params = {},
   interfaceKey = "",
-  cancel = false
+  cancel = false,
+  // isLoading = true,
 } = {}) {
   if (cancel) {
     deleteInterceptors(interfaceKey); // 删除拦截器以及其实例
@@ -178,13 +181,14 @@ export function postFetch({
   if (cancelFetch(interfaceKey).cancel) return;
   /** 这里使用 promise 进行就建议包装是为了更友好的将数据的处理暴露在业务层 */
   return new Promise((resolve, reject) => {
+    // isLoading && startLoading(); // 展示loading
     /** 配置请求是否加载动画 */
     customAxios({
       method: "post",
       url: url,
       data: params,
       cancelToken:
-        (!cancel && customAxios.CancelToken(function executor(c) {
+        (!cancel && axios.CancelToken(function executor(c) {
           // executor 函数接收一个 cancel 函数作为参数
           cancelFetch(interfaceKey).cancel = c;
         })) || ""
