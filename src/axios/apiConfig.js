@@ -159,8 +159,6 @@ export function postFetch ({
     return cancelFetch.get(interfaceKey)()
   }
   setInterceptorsStack(interfaceKey) // 开启请求拦截
-  /** 针对可以取消请求的操作做一些响应的处理 */
-  if (cancelFetch(interfaceKey).cancel) return
   /** 这里使用 promise 进行就建议包装是为了更友好的将数据的处理暴露在业务层 */
   return new Promise((resolve, reject) => {
     // isLoading && startLoading(); // 展示loading
@@ -173,7 +171,7 @@ export function postFetch ({
         (!cancel &&
           axios.CancelToken(function executor (c) {
             // executor 函数接收一个 cancel 函数作为参数
-            cancelFetch(interfaceKey).cancel = c
+            cancelFetch.set(interfaceKey, c)
           })) ||
         ''
     })
