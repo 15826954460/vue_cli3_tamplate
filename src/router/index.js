@@ -3,11 +3,11 @@ import Router from "vue-router";
 Vue.use(Router);
 
 let routes = [];
-const routerContext = require.context('.', true, /index\.js/)
+const routerContext = require.context('./route-list', true, /index\.js/);
+
 routerContext.keys().forEach(routeName => {
-  if (routeName.startsWith("./index")) return // 排除根index.js
-  const routeModule = routerContext(routeName) // get router module object
-  routes = [...routes, ...(routeModule.default || routeModule)] // 注册路由
+  const routeModule = routerContext(routeName);
+  routes = [...routes, ...(routeModule.default || routeModule)];
 });
 
 export default new Router({

@@ -3,21 +3,17 @@ const state = {
 };
 
 const mutations = {
-  // 设置模板信息
-  mt_add(state, value) {
+  hmdSetCount(state, value) {
     state.count = value;
   }
 };
 
-const actions = {
-  at_add: ({ commit }, value) => {
-    commit("mt_add", value);
-  }
-};
+// const actions = {
+// };
 
 export default {
   namespaced: true,
   state,
   mutations,
-  actions
+  // actions,
 };
