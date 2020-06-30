@@ -1,12 +1,14 @@
 export default [
   {
     path: '/',
-    name: "home",
-    component: () => import("@/views/home/Index.vue")
+    name: "home-page",
+    component: () => import('@/views/home/Index.vue'),
+    prop: true,
   },
   {
     path: '/about',
-    name: 'about',
-    component: () => import("@/views/about/Index.vue")
+    name: 'about-page',
+    component: () => import('@/views/about/Index.vue'),
+    prop: true,
   }
 ]
