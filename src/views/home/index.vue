@@ -1,35 +1,58 @@
 <template>
   <div class="home">
     <Toast/>
+    <p @click="router.push({ path: '/about' })"> changeroute </p>
     <p>{{$t("international")}}</p>
     <p>我来自全局的状态管理： {{userInfo}}</p>
     <button @click="changeGlobal">修改全局状态信息</button>
     <p>我来自home模块的状态管理： {{count}}</p>
     <button @click="changeModule">修改home 模块状态信息</button>
+    <button @click="changeData">{{ data.item.count }}</button>
+    <input type="text" v-model="inputVal">
   </div>
 </template>
 
 <script>
-import store from "@/mixin/store.js";
-import API from "@/axios/api.js";
+import store from "@/mixin/store";
+import common from '@/mixin/common'
+// import API from "@/axios/api.js";
 import util from "@/utils";
 
 export default {
-  mixins: [store],
+  mixins: [store, common],
   data() {
-    return {};
+    return {
+      data: {
+        item: {
+          count: 6
+        },
+      },
+      inputVal: 'test',
+      unWatchInputVal: null,
+    };
   },
+
   components: {},
 
   computed: {},
 
   mounted() {
-    API.nodejs.topics().then(res => {
-      console.log('nodejs 公共api接口返回', res);
+    // API.nodejs.topics().then(res => {
+    //   console.log('nodejs 公共api接口返回', res);
+    // });
+    this.injectWatchs({ 
+      watchVal: 'inputVal',
+      cb: this.inputValChange,
+      unWatchRule: 'clear',
+      immediate: true,
     });
   },
 
   methods: {
+    inputValChange() {
+      console.log(1111, Date.now() * Math.random());
+    },
+  
     changeModule() {
       this.hmdSetCount(Math.random() * 1000);
     },
@@ -37,6 +60,10 @@ export default {
     changeGlobal() {
       this.setUserInfo(util.randomString());
     },
+
+    changeData()  {
+      this.data.item.count += 1;
+    }
   }
 };
 </script>

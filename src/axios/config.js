@@ -14,7 +14,6 @@ let cancelFetch = new Map(); // 取消请求的拦截栈
 let customAxios = axios.create({
   baseURL: '/api',
   timeout: TIME_OUT, // 默认请求超时时间
-  // 设置请求头格式：用自定义的覆盖 axios 自带的 'Content-Type': 'application/x-www-form-urlencoded'
   headers: {
     'Content-Type': 'application/json; charset=UTF-8',
     Authorization: '' // 权限鉴别字段默认为空
