@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import store from '@/store/index';
 /**
  * @author 柏运送
  * @date 2020-06-29 16:56:20
@@ -42,6 +43,9 @@ let _responseInstance = customAxios.interceptors.response.use(
     return res
   },
   error => {
+    if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+      store.commit('setNetError', true);
+    }
     return Promise.reject(error)
   }
 )

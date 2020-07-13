@@ -16,7 +16,7 @@
 import store from "@/mixin/store";
 import common from '@/mixin/common'
 // import API from "@/axios/api.js";
-import util from "@/utils";
+import util from "@/utils/util";
 
 export default {
   mixins: [store, common],
@@ -36,10 +36,12 @@ export default {
 
   computed: {},
 
-  mounted() {
-    // API.nodejs.topics().then(res => {
-    //   console.log('nodejs 公共api接口返回', res);
-    // });
+  async mounted() {
+    // 接口调用展示
+    // const res = await API.nodejs.topics();
+    // console.log('nodejs 公共api接口返回', res);
+
+    // watch 监听注册
     this.injectWatchs({ 
       watchVal: 'inputVal',
       cb: this.inputValChange,
