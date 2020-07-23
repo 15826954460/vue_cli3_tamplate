@@ -1,39 +1,48 @@
 <template>
   <div class="home">
-    <p @click="router.push({ path: '/about' })"> changeroute </p>
-    <p>{{$t("international")}}</p>
-    <p>我来自全局的状态管理： {{userInfo}}</p>
-    <button @click="changeGlobal">修改全局状态信息</button>
-    <p>我来自home模块的状态管理： {{count}}</p>
-    <button @click="changeModule">修改home 模块状态信息</button>
-    <button @click="changeData">{{ data.item.count }}</button>
+    <p>国际化: {{$t("international")}}</p>
+    <div>
+      <button @click="changeGlobal">vuex common 模块 userInfo </button> {{userInfo}}
+    </div>
+    <div>
+      <button @click="changeModule">vuex home 模块 count </button> {{count}}
+    </div>
+    <Tabs v-model="activityName" @tabs-click="handleTabClick">
+      <TabsNav name="home" label="home"></TabsNav>
+      <TabsNav name="about" label="about"></TabsNav>
+    </Tabs>
     <input type="text" v-model="inputVal">
   </div>
 </template>
 
 <script>
-import store from "@/mixin/store";
-import common from '@/mixin/common'
 // import API from "@/axios/api.js";
+import { mapState, mapMutations, createNamespacedHelpers } from 'vuex';
+import common from '@/mixin/common';
 import util from "@/utils/util";
 
+const {
+  mapState: mapStateHome,
+  mapMutations: mapMutationsHome,
+} = createNamespacedHelpers("home");
+
 export default {
-  mixins: [store, common],
+  name: 'home-index',
+  mixins: [common],
   data() {
     return {
-      data: {
-        item: {
-          count: 6
-        },
-      },
       inputVal: 'test',
       unWatchInputVal: null,
+      activityName: 'home',
     };
   },
 
   components: {},
 
-  computed: {},
+  computed: {
+    ...mapState(['userInfo', 'netError']), // 全局引入
+    ...mapStateHome(['count']), // home模块引入一  // ...mapState('home', ['count']), // home模块的引入方式二
+  },
 
   async mounted() {
     // 接口调用展示
@@ -50,20 +59,24 @@ export default {
   },
 
   methods: {
+    ...mapMutations(['setUserInfo']),
+    ...mapMutationsHome(['hmSetCount']),
     inputValChange() {
       console.log(1111, Date.now() * Math.random());
     },
   
     changeModule() {
-      this.hmdSetCount(Math.random() * 1000);
+      this.hmSetCount(Math.random() * 1000);
     },
 
     changeGlobal() {
       this.setUserInfo(util.randomString());
     },
 
-    changeData()  {
-      this.data.item.count += 1;
+    handleTabClick(tab, event) {
+      console.log(tab, event);
+      // this.activityName = tab;
+      console.log(2222, this.activityName);
     }
   }
 };

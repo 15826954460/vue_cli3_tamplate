@@ -3,7 +3,7 @@ const state = {
 };
 
 const mutations = {
-  hmdSetCount(state, value) {
+  hmSetCount(state, value) {
     state.count = value;
   }
 };

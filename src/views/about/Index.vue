@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'about-index',
   data () {
     return {
     };

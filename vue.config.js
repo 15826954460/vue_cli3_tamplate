@@ -14,5 +14,14 @@ module.exports = {
       }
     }
   },
+  // 全局scss引入
+  css: {
+    loaderOptions: {
+      sass: {
+        // @/ is an alias to src/
+        data: `@import "@/assets/style/variable.scss";`
+      }
+    }
+  },
   productionSourceMap: false
 };

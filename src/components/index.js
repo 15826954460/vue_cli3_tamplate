@@ -14,10 +14,12 @@ const requireComponent = require.context(
   /[A-Za-z]+\.vue$/
 );
 
-requireComponent.keys().length || requireComponent.keys().forEach(fileName => {
+console.log(11111, requireComponent.keys());
+
+requireComponent.keys().length && requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName);
   const componentName = upperFirst(
-    camelCase(fileName.replace(/\.\w+$/, ""))
+    camelCase(fileName.slice(fileName.lastIndexOf('/')).replace(/\.\w+$/, ""))
   );
   Vue.component(componentName, componentConfig.default || componentConfig);
 });
