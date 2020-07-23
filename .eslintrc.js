@@ -20,6 +20,7 @@ module.exports = {
     "no-multi-spaces": 'off',
     "comma-dangle":'off',
     "key-spacing": "off",
+    "space-before-blocks": "off",
     "no-extra-semi": "error" /** 忽略额外的分号 */
   },
   parserOptions: {

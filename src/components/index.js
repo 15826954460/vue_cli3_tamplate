@@ -14,7 +14,7 @@ const requireComponent = require.context(
   /[A-Za-z]+\.vue$/
 );
 
-requireComponent.keys().forEach(fileName => {
+requireComponent.keys().length || requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName);
   const componentName = upperFirst(
     camelCase(fileName.replace(/\.\w+$/, ""))

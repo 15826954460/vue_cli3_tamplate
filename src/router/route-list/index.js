@@ -1,9 +1,5 @@
 export default [
   {
-    path: '/',
-    redirect: '/home'
-  },
-  {
     path: '/home',
     name: "home-page",
     component: () => import('@/views/home/Index.vue'),
@@ -14,5 +10,9 @@ export default [
     name: 'about-page',
     component: () => import('@/views/about/Index.vue'),
     prop: true,
-  }
+  },
+  {
+    path: '/',
+    redirect: '/home'
+  },
 ]

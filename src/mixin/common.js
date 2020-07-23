@@ -28,7 +28,7 @@ export default {
         watchVal,
         (newVal, oldVal) => {
           console.log(`oldVal ==> ${oldVal}  newVal ===> ${newVal}`);
-          callback();
+          callback(oldVal, newVal);
           if (unWatchRule) {
             if (newVal === 'clear') {
               console.log(`清除监听  => ${unWatch}`);

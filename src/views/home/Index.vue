@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <Toast/>
     <p @click="router.push({ path: '/about' })"> changeroute </p>
     <p>{{$t("international")}}</p>
     <p>我来自全局的状态管理： {{userInfo}}</p>
