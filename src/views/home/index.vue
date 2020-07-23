@@ -50,7 +50,7 @@ export default {
     // console.log('nodejs 公共api接口返回', res);
 
     // watch 监听注册
-    this.injectWatchs({ 
+    this.injectWatchs({
       watchVal: 'inputVal',
       cb: this.inputValChange,
       unWatchRule: 'clear',
@@ -64,7 +64,7 @@ export default {
     inputValChange() {
       console.log(1111, Date.now() * Math.random());
     },
-  
+
     changeModule() {
       this.hmSetCount(Math.random() * 1000);
     },

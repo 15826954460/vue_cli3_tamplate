@@ -45,6 +45,7 @@ export default {
   // border: 1px solid red;
   padding: 5px;
   position: relative;
+  border-bottom: 2px solid $tabs-bottom-line-color;
   // &::after {
   //   content: "";
   //   display: block;

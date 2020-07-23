@@ -1,13 +1,13 @@
 export default [
   {
     path: '/home',
-    name: "home-page",
+    name: "home-index",
     component: () => import('@/views/home/Index.vue'),
     prop: true,
   },
   {
     path: '/about',
-    name: 'about-page',
+    name: 'about-index',
     component: () => import('@/views/about/Index.vue'),
     prop: true,
   },

@@ -14,8 +14,6 @@ const requireComponent = require.context(
   /[A-Za-z]+\.vue$/
 );
 
-console.log(11111, requireComponent.keys());
-
 requireComponent.keys().length && requireComponent.keys().forEach(fileName => {
   const componentConfig = requireComponent(fileName);
   const componentName = upperFirst(
