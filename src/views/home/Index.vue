@@ -7,10 +7,12 @@
     <div>
       <button @click="changeModule">vuex home 模块 count </button> {{count}}
     </div>
-    <Tabs v-model="activityName" @tabs-click="handleTabClick">
-      <TabsNav name="home" label="home"></TabsNav>
-      <TabsNav name="about" label="about"></TabsNav>
+    <br>
+    <Tabs v-model="activityName" @input="(val) => currentTab = val" @tabs-click="handleTabClick">
+      <TabsPane name="home" label="home">home------</TabsPane>
+      <TabsPane name="about" label="about">about--------</TabsPane>
     </Tabs>
+    <br>
     <input type="text" v-model="inputVal">
   </div>
 </template>
@@ -50,9 +52,9 @@ export default {
     // console.log('nodejs 公共api接口返回', res);
 
     // watch 监听注册
-    this.injectWatchs({ 
+    this.injectWatchs({
       watchVal: 'inputVal',
-      cb: this.inputValChange,
+      callback: this.inputValChange,
       unWatchRule: 'clear',
       immediate: true,
     });
@@ -61,10 +63,12 @@ export default {
   methods: {
     ...mapMutations(['setUserInfo']),
     ...mapMutationsHome(['hmSetCount']),
+
     inputValChange() {
       console.log(1111, Date.now() * Math.random());
+      console.log(797979, this.activityName);
     },
-  
+
     changeModule() {
       this.hmSetCount(Math.random() * 1000);
     },
@@ -73,10 +77,9 @@ export default {
       this.setUserInfo(util.randomString());
     },
 
-    handleTabClick(tab, event) {
-      console.log(tab, event);
-      // this.activityName = tab;
-      console.log(2222, this.activityName);
+    handleTabClick(name) {
+      // this.activityName = name;
+      console.log(2222, name, this.activityName);
     }
   }
 };

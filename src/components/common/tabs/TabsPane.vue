@@ -1,6 +1,11 @@
 <template>
-  <div class="tabs-pane">
-   
+  <div
+    v-show="isActive"
+    :class="[
+      'tabs-pane-wrap'
+    ]"
+  >
+    <slot></slot>
   </div>
 </template>
 
@@ -8,7 +13,11 @@
 
 export default {
   name: 'tabs-tabs-pane',
- 
+
+  inject: [
+    'rootTabs'
+  ],
+
   props: {
     label: {
       type: String,
@@ -16,15 +25,22 @@ export default {
     },
     name: {
       type: [String, Number],
-    },
-    
+      required: true,
+    }
   },
 
   data() {
-    return {}
+    return {
+      loaded: false,
+    }
   },
 
-  components: {},
+  computed: {
+    isActive() {
+      const active = this.$parent.value === this.name;
+      return active;
+    },
+  },
 
   created() {},
 
@@ -32,11 +48,13 @@ export default {
 
   methods: {
     handleTabClick() {
-      this.$emit('')
     }
   }
 }
 </script>
 
 <style lang='scss' scoped>
+.tabs-pane-wrap {
+  // border: 1px solid red;
+}
 </style>

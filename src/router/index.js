@@ -11,7 +11,7 @@ routerContext.keys().forEach(routeName => {
 });
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes: routes
 });

@@ -1,10 +1,15 @@
 <template>
-  <div class="tabs">
+  <div :class="[
+    'tabs-wrap',
+  ]">
+    <TabsNav :panes="panes"></TabsNav>
     <slot></slot>
   </div>
 </template>
 
 <script>
+const noop = function() {};
+
 export default {
   name: 'tabs-tabs',
 
@@ -14,9 +19,11 @@ export default {
   },
 
   props: {
-    type: {
-      type: String,
-      default: '',
+    value: String,
+    type: String, // line circle
+    customStyle: {
+      type: Object,
+      default: noop,
     }
   },
 
@@ -27,25 +34,40 @@ export default {
   },
 
   data() {
-    return {}
+    return {
+      panes: [], // tabspane 实例列表
+    };
   },
 
-  components: {},
+  mounted() {
+    this.calcNavPaneInstances();
+  },
 
-  created() {},
-
-  mounted() {},
-
-  methods: {}
+  methods: {
+    calcNavPaneInstances(isForceUpdate = false) {
+      // 过滤非tabs-pane组件
+      if (this.$slots.default) {
+        const paneSlots = this.$slots.default.filter(vnode => vnode.tag &&
+          vnode.componentOptions && vnode.componentOptions.Ctor.options.name === 'tabs-tabs-pane') || [];
+        const panes = paneSlots.map(({ componentInstance }) => componentInstance);
+        const panesChanged = !(panes.length === this.panes.length && panes.every((pane, index) => pane === this.panes[index]));
+        if (isForceUpdate || panesChanged) {
+          this.panes = panes;
+        }
+      } else if (this.panes.length !== 0) {
+        this.panes = [];
+      }
+    },
+  }
 }
 </script>
 
 <style lang='scss' scoped>
-.tabs {
-  // border: 1px solid red;
-  padding: 5px;
-  position: relative;
-  border-bottom: 2px solid $tabs-bottom-line-color;
+.tabs-wrap {
+  // border: 1px solid blue;
+  // padding: 5px;
+  // position: relative;
+  // border-bottom: 2px solid $tabs-bottom-line-color;
   // &::after {
   //   content: "";
   //   display: block;

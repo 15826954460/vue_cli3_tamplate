@@ -1,0 +1,19 @@
+/* 全局样式 */
+
+.__rel {
+  position: relative;
+}
+
+.__abs{
+  position: absolute;
+}
+
+.__fix {
+  position: fixed;
+}
+
+.__disable {
+  cursor: not-allowed;
+}
+
+

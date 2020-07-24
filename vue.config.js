@@ -19,7 +19,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         // @/ is an alias to src/
-        data: `@import "@/assets/style/variable.scss";`
+        data: `@import "@/assets/style/var/common.scss";`
       }
     }
   },

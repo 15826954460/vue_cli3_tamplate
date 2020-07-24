@@ -1,156 +1,161 @@
-/* 关于flex布局部分 */
+/* flex布局部分 */
 
-.ccc {
+.__flex{
+  display: -webkit-flex; /* Safari */
+  display: flex;
+}
+
+.__ccc {
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.ccfs {
+.__ccfs {
   flex-direction: column;
   justify-content: center;
   align-self: flex-start;
 }
 
-.ccfe {
+.__ccfe {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
 }
 
-.cfsfs {
+.__cfsfs {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.cfsc {
+.__cfsc {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
 }
 
-.cfsfe {
+.__cfsfe {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
-.cfefs {
+.__cfefs {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-start;
 }
 
-.cfec {
+.__cfec {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
 }
 
-.cfefe {
+.__cfefe {
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
 }
 
-.csbfe {
+.__csbfe {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.csbc {
+.__csbc {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-.csbfs {
+.__csbfs {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.rcc {
+.__rcc {
   flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
-.rcfs {
+.__rcfs {
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
 }
 
-.rcfe {
+.__rcfe {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
 }
 
-.rfsc {
+.__rfsc {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
 }
 
-.rfsfs {
+.__rfsfs {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
-.rfsfe {
+.__rfsfe {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-end;
 }
 
-.rfec {
+.__rfec {
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
 }
 
-.rfefs {
+.__rfefs {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-start;
 }
 
-.rfefe {
+.__rfefe {
   flex-direction: row;
   justify-content: flex-end;
   align-items: flex-end;
 }
 
-.rsbfs {
+.__rsbfs {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 }
 
-.rsbc {
+.__rsbc {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
 
-.rsac {
+.__rsac {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
 
-.rsbfe {
+.__rsbfe {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-end;
 }
 
-.transform {
+.__transform {
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -158,7 +163,7 @@
   -moz-transform: translate(-50%, -50%);
 }
 
-.transformX{
+.__transformX{
   transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -166,7 +171,7 @@
   -moz-transform: translateX(-50%);
 }
 
-.transformY{
+.__transformY{
   transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   -webkit-transform: translateY(-50%);

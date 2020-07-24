@@ -4,6 +4,9 @@ import router from "@/router/index";
 import store from "@/store/index";
 import i18n from "@/i18n/index";
 import "@/components/index";
+import "@/assets/style/css/reset.css";
+import "@/assets/style/css/flex.css";
+import "@/assets/style/css/common.css";
 
 Vue.config.productionTip = false;
 
