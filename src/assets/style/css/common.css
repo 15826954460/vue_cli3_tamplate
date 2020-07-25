@@ -16,4 +16,8 @@
   cursor: not-allowed;
 }
 
+.__cursor {
+  cursor: pointer;
+}
+
 

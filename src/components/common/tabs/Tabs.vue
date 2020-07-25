@@ -20,7 +20,7 @@ export default {
 
   props: {
     value: String,
-    type: String, // line circle
+    type: String, // tab-line tab-bg
     customStyle: {
       type: Object,
       default: noop,

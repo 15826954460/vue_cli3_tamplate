@@ -6,16 +6,16 @@
     ]"
   >
     <span
-      v-for='(item, index) in panes' :key="`${item.name}-${index}`"
+      v-for='(item) in panes' :key="`${item.name}`"
       :class="[
-        'tabs-nav-items', { 'tabs-nav-items-active' : $parent.value === item.name }
+        '__cursor tabs-nav-items', { 'tabs-nav-items-active' : $parent.value === item.name }
       ]"
       @click="(e) => handleTabsNavClick(e, item)"
     >
       {{item.label}}
     </span>
 
-    <span v-if="type === 'line'" ref='bottom-line' class="__abs bottom-line"></span>
+    <span v-if="isType" ref='bottom-line' :class="['__abs bottom-line', `is-${type}`]"></span>
   </div>
 </template>
 
@@ -34,36 +34,53 @@ export default {
     },
   },
 
+  computed: {
+    isType() {
+      const baackList = ['tab-line', 'tab-bg'];
+      return baackList.indexOf(this.type) > -1;
+    }
+  },
+
   data() {
-    const { type = 'line' } = this.rootTabs;
+    const { type = 'tab-line' } = this.rootTabs;
     return {
       type,
     }
   },
 
   mounted() {
-    this.tabsNavRef = this.$refs['tabs-nav-ref'];
-    this.type && (this.btmLineRef = this.$refs['bottom-line']);
-    this.calSty();
+    if (this.isType) {
+      this.tabsNavRef = this.$refs['tabs-nav-ref'];
+      this.btmLineRef = this.$refs['bottom-line'];
+      this.calSty();
+    }
   },
 
   methods: {
     handleTabsNavClick(e, item) {
       this.$parent.$emit('input', item.name)
       this.$parent.$emit('tabs-click', item.name, e);
-      this.calSty();
+      this.isType && this.calSty();
     },
 
     calSty() {
-      const { tabsNavRef, btmLineRef } = this;
+      const { tabsNavRef, btmLineRef, type } = this;
       this.$nextTick(() => {
         const currentActiveRef = tabsNavRef.getElementsByClassName('tabs-nav-items tabs-nav-items-active')[0];
-        const { offsetLeft, offsetWidth } = currentActiveRef;
-        const styleObj = window.getComputedStyle(currentActiveRef, null);
-        const pdL = styleObj.getPropertyValue("padding-left");
-        const pdR = styleObj.getPropertyValue("padding-right");
-        btmLineRef.style.width = `${offsetWidth - parseInt(pdL) - parseInt(pdR)}px`;
-        btmLineRef.style.transform = `translate(${offsetLeft + parseInt(pdL)}px, 0)`;
+        const { offsetLeft, offsetWidth, offsetHeight } = currentActiveRef;
+        if (type === 'tab-line') {
+          const styleObj = window.getComputedStyle(currentActiveRef, null);
+          const pdL = styleObj.getPropertyValue("padding-left");
+          const pdR = styleObj.getPropertyValue("padding-right");
+          btmLineRef.style.width = `${offsetWidth - parseInt(pdL) - parseInt(pdR)}px`;
+          btmLineRef.style.transform = `translate(${offsetLeft + parseInt(pdL)}px, 0)`;
+        }
+        if (type === 'tab-bg') {
+          btmLineRef.style.width = `${offsetWidth}px`;
+          btmLineRef.style.height = `${offsetHeight * 0.8}px`;
+          btmLineRef.style.borderRadius = `${offsetHeight / 2}px`;
+          btmLineRef.style.transform = `translate(${offsetLeft}px, -50%`;
+        }
       });
     }
   }
@@ -77,8 +94,7 @@ $tabs-hover-color: #409eff;
 .tabs-nav {
   display: inline-block;
   padding: 0 5px;
-  border: 1px solid lightgreen;
-  .bottom-line {
+  .is-tab-line {
     display: inline-block;
     bottom: 0;
     left: 0;
@@ -90,15 +106,24 @@ $tabs-hover-color: #409eff;
     -ms-transition: all 0.2;
     transition: all 0.2;
   }
+  .is-tab-bg {
+    display: inline-block;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(64,158,255,0.2);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2;
+    -ms-transition: all 0.2;
+    transition: all 0.2;
+  }
 }
 
 .tabs-nav-items {
   display: inline-block;
   padding: 5px 10px;
-  cursor: pointer;
   color: $tabs-color;
   transition: color 0.3s ease-in-out;
-  // border: 1px solid lightcoral;
   &:hover {
     color: $tabs-hover-color;
   }

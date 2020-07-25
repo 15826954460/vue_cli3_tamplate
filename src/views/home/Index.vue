@@ -11,6 +11,10 @@
     <Tabs v-model="activityName" @input="(val) => currentTab = val" @tabs-click="handleTabClick">
       <TabsPane name="home" label="home">home------</TabsPane>
       <TabsPane name="about" label="about">about--------</TabsPane>
+      <TabsPane name="about11111" label="about">about11111--------</TabsPane>
+      <TabsPane name="sex" label="sex">sex--------</TabsPane>
+      <TabsPane name="man11111" label="man">man11111--------</TabsPane>
+      <TabsPane name="man" label="man">man--------</TabsPane>
     </Tabs>
     <br>
     <input type="text" v-model="inputVal">
@@ -56,7 +60,6 @@ export default {
       watchVal: 'inputVal',
       callback: this.inputValChange,
       unWatchRule: 'clear',
-      immediate: true,
     });
   },
 
@@ -66,7 +69,6 @@ export default {
 
     inputValChange() {
       console.log(1111, Date.now() * Math.random());
-      console.log(797979, this.activityName);
     },
 
     changeModule() {
@@ -79,7 +81,6 @@ export default {
 
     handleTabClick(name) {
       // this.activityName = name;
-      console.log(2222, name, this.activityName);
     }
   }
 };
