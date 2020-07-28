@@ -1,4 +1,3 @@
-
 <template>
    <div class="about">
     <h1>This is an about page</h1>
@@ -13,16 +12,11 @@ export default {
     return {
     };
   },
-
   components: {},
-
   computed: {},
-
   mounted() {},
-
   methods: {}
 }
-
 </script>
 <style lang='scss' scoped>
 </style>

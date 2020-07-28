@@ -36,13 +36,13 @@ export default {
 
   computed: {
     isType() {
-      const baackList = ['tab-line', 'tab-bg'];
+      const baackList = ['tab-line', 'tab-round'];
       return baackList.indexOf(this.type) > -1;
     }
   },
 
   data() {
-    const { type = 'tab-line' } = this.rootTabs;
+    const { type = 'tab-round' } = this.rootTabs;
     return {
       type,
     }
@@ -75,7 +75,7 @@ export default {
           btmLineRef.style.width = `${offsetWidth - parseInt(pdL) - parseInt(pdR)}px`;
           btmLineRef.style.transform = `translate(${offsetLeft + parseInt(pdL)}px, 0)`;
         }
-        if (type === 'tab-bg') {
+        if (type === 'tab-round') {
           btmLineRef.style.width = `${offsetWidth}px`;
           btmLineRef.style.height = `${offsetHeight * 0.8}px`;
           btmLineRef.style.borderRadius = `${offsetHeight / 2}px`;
@@ -91,6 +91,13 @@ export default {
 $tabs-color: #314659;
 $tabs-hover-color: #409eff;
 
+@mixin transition($am-opt: all, $am-t: 0.2s, $am-at: ease-in-out) {
+  -webkit-transition: $am-opt $am-t $am-at;
+  -moz-transition: $am-opt $am-t $am-at;
+  -ms-transition: $am-opt $am-t $am-at;
+  transition: $am-opt $am-t $am-at;
+}
+
 .tabs-nav {
   display: inline-block;
   padding: 0 5px;
@@ -101,21 +108,15 @@ $tabs-hover-color: #409eff;
     height: 2px;
     border-radius: 1px;
     background: $tabs-hover-color;
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2;
-    -ms-transition: all 0.2;
-    transition: all 0.2;
+    @include transition;
   }
-  .is-tab-bg {
+  .is-tab-round {
     display: inline-block;
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(64,158,255,0.2);
-    -webkit-transition: all 0.2s;
-    -moz-transition: all 0.2;
-    -ms-transition: all 0.2;
-    transition: all 0.2;
+    @include transition;
   }
 }
 
@@ -123,7 +124,7 @@ $tabs-hover-color: #409eff;
   display: inline-block;
   padding: 5px 10px;
   color: $tabs-color;
-  transition: color 0.3s ease-in-out;
+  @include transition(color);
   &:hover {
     color: $tabs-hover-color;
   }

@@ -8,7 +8,7 @@
       <button @click="changeModule">vuex home 模块 count </button> {{count}}
     </div>
     <br>
-    <Tabs v-model="activityName" @input="(val) => currentTab = val" @tabs-click="handleTabClick">
+    <Tabs v-model="activityName" @tabs-click="handleTabClick">
       <TabsPane name="home" label="home">home------</TabsPane>
       <TabsPane name="about" label="about">about--------</TabsPane>
       <TabsPane name="about11111" label="about">about11111--------</TabsPane>
