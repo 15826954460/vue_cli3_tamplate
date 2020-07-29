@@ -5,7 +5,7 @@
       <button @click="changeGlobal">vuex common 模块 userInfo </button> {{userInfo}}
     </div>
     <div>
-      <button @click="changeModule">vuex home 模块 count </button> {{count}}
+      <button @click="changeModule" class="module">vuex home 模块 count </button> {{count}}
     </div>
     <br>
     <Tabs v-model="activityName" @tabs-click="handleTabClick">
@@ -18,6 +18,7 @@
     </Tabs>
     <br>
     <input type="text" v-model="inputVal">
+    <Button class="button">按钮</Button>
   </div>
 </template>
 
@@ -40,6 +41,9 @@ export default {
       inputVal: 'test',
       unWatchInputVal: null,
       activityName: 'home',
+      cusStyle: {
+
+      }
     };
   },
 
@@ -86,4 +90,7 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.module {
+  cursor: not-allowed;
+}
 </style>

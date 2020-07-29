@@ -1,5 +1,5 @@
 @charset "utf-8";
-* {
+div, ul, li, p, h1, h2, h3, h4, h5, h6, dl, dt, dd, a, span, image, i, button, ::before, ::after {
     box-sizing: border-box;
     -moz-user-select: none;
     -webkit-user-drag: none;
@@ -32,4 +32,10 @@ a :hover {
 
 img {
     vertical-align: middle;
+}
+
+button {
+    border: none;
+    background-color: none;
+    border-image: none;
 }
