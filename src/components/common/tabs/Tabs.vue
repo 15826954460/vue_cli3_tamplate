@@ -63,19 +63,4 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-.tabs-wrap {
-  // border: 1px solid blue;
-  // padding: 5px;
-  // position: relative;
-  // border-bottom: 2px solid $tabs-bottom-line-color;
-  // &::after {
-  //   content: "";
-  //   display: block;
-  //   position: absolute;
-  //   bottom: 0;
-  //   height: 2px;
-  //   width: 60px;
-  //   background: $tabs-item-line;
-  // }
-}
 </style>
