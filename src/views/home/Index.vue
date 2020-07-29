@@ -19,6 +19,9 @@
     <br>
     <input type="text" v-model="inputVal">
     <Button class="button">按钮</Button>
+
+    <textarea v-model="cureInfo.Symptom" id="symptomTxt" v-autosize></textarea>
+
   </div>
 </template>
 
@@ -41,13 +44,11 @@ export default {
       inputVal: 'test',
       unWatchInputVal: null,
       activityName: 'home',
-      cusStyle: {
-
+      cureInfo: {
+        Symptom: 'jsfdslkfjsd fj 发大沙发地方十九分士大夫精神独立发生激烈的'
       }
     };
   },
-
-  components: {},
 
   computed: {
     ...mapState(['userInfo', 'netError']), // 全局引入
@@ -85,12 +86,29 @@ export default {
 
     handleTabClick(name) {
       // this.activityName = name;
-    }
+    },
   }
 };
 </script>
 <style lang='scss' scoped>
 .module {
   cursor: not-allowed;
+}
+
+#textarea {
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  width: 550px;
+  font-size: 14px;
+  height: 18px;
+  line-height: 24px;
+  padding: 2px;
+}
+
+textarea {
+  outline: 0 none;
+  border-color: rgba(82, 168, 236, 0.8);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
 }
 </style>

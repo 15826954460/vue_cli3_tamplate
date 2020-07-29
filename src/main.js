@@ -8,6 +8,9 @@ import "@/assets/style/css/reset.css";
 import "@/assets/style/css/flex.css";
 import "@/assets/style/css/common.css";
 
+import vAutosize from '@/directives/autosize/index';
+Vue.directive('autosize', vAutosize);
+
 Vue.config.productionTip = false;
 
 new Vue({
