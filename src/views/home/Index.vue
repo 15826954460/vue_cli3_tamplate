@@ -61,11 +61,15 @@ export default {
     // console.log('nodejs 公共api接口返回', res);
 
     // watch 监听注册
-    this.injectWatchs({
+    this.injectWatchs([{
       watchVal: 'inputVal',
       callback: this.inputValChange,
       unWatchRule: 'clear',
-    });
+    }, {
+      watchVal: 'cureInfo.Symptom',
+      callback: this.textareaChange,
+      unWatchRule: 'clearText',
+    }]);
   },
 
   methods: {
@@ -74,6 +78,10 @@ export default {
 
     inputValChange() {
       console.log(1111, Date.now() * Math.random());
+    },
+
+    textareaChange() {
+      console.log(999999, Date.now() * Math.random());
     },
 
     changeModule() {

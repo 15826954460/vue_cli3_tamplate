@@ -10,5 +10,11 @@ export default {
       pwd += chars.charAt(Math.floor(Math.random() * maxPos));
     }
     return pwd;
-  }
+  },
+  // 数据格式校验 string / array / object / number /
+  dataTypeDetection(data) {
+    const dataObj = Object.prototype.toString.call(data);
+    const type = dataObj.slice(8, dataObj.length - 1).toLowerCase();
+    return type;
+  },
 }
