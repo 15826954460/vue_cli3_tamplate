@@ -17,4 +17,19 @@ export default {
     const type = dataObj.slice(8, dataObj.length - 1).toLowerCase();
     return type;
   },
+  // 合并对象属性
+  merge(target) {
+    for (let i = 1, j = arguments.length; i < j; i++) {
+      let source = arguments[i] || {};
+      for (let prop in source) {
+        if (source.hasOwnProperty(prop)) {
+          let value = source[prop];
+          if (value !== undefined) {
+            target[prop] = value;
+          }
+        }
+      }
+    }
+    return target;
+  },
 }
