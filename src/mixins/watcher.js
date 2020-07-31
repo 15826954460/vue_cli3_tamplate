@@ -8,7 +8,7 @@ import util from '@/utils/util';
 export default {
   /**
    * 注册事件监听
-   * @param {unWatch, unWatchRule, watchVal, cb, deep, immediate } param0
+   * @param {unWatch, unWatchRule, watchVal, cb, deep, immediate } param
    * @param unWatch 解除监听规则的函数名
    * @param watchVal 监听函数名
    * @param cb 回调函数
@@ -60,6 +60,6 @@ export default {
           this.createWatch({ unWatch, watchVal, unWatchRule, immediate, deep, callback });
         });
       }
-    }
+    },
   }
 }

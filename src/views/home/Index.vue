@@ -28,8 +28,8 @@
 <script>
 // import API from "@/axios/api.js";
 import { mapState, mapMutations, createNamespacedHelpers } from 'vuex';
-import common from '@/mixin/common';
 import util from "@/utils/util";
+import { watcher } from '@/mixins/index'
 
 const {
   mapState: mapStateHome,
@@ -38,7 +38,7 @@ const {
 
 export default {
   name: 'home-index',
-  mixins: [common],
+  mixins: [watcher],
   data() {
     return {
       inputVal: 'test',
