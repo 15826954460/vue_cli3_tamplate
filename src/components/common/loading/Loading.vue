@@ -25,9 +25,13 @@ export default {
       type: Boolean,
       default: false,
     },
-    innerSize: { // 内圈尺寸大小
+    innerSize: { // 内圈尺寸大小[0~1] 之间的小数
       type: Number,
       default: 0.4,
+      validator: function (value) {
+        // 这个值必须匹配下列字符串中的一个
+        return value >= 0 && value <= 1;
+      }
     },
     color: {
       type: String,

@@ -13,7 +13,7 @@ export default {
   },
   // 数据格式校验 string / array / object / number /
   dataTypeDetection(data) {
-    const dataObj = Object.prototype.toString.call(data);
+    const dataObj = {}.toString.call(data);
     const type = dataObj.slice(8, dataObj.length - 1).toLowerCase();
     return type;
   },
@@ -32,4 +32,5 @@ export default {
     }
     return target;
   },
+
 }
